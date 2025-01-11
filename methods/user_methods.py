@@ -27,8 +27,6 @@ class UserMethods:
     @staticmethod
     @allure.step("Обновление данных пользователя")
     def update_user(token, new_data):
-        headers = {
-            "Authorization": f"Bearer {token}"
-        }
+        headers = {"Authorization": f"{token}"} if token else {}
         response = requests.patch(f"{BASE_URL}{ENDPOINTS['update_user']}", json=new_data, headers=headers)
         return response

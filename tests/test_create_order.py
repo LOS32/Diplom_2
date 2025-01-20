@@ -1,5 +1,6 @@
 import allure
 from methods.order_methods import OrderMethods
+from methods.user_methods import UserMethods
 from config import USER_DATA, ORDER_DATA
 
 @allure.feature("Создание заказа")
@@ -7,7 +8,7 @@ class TestCreateOrder:
 
     @allure.title("Создание заказа с авторизацией и ингредиентами")
     def test_create_order_with_auth(self):
-        login_response = OrderMethods.login_user(
+        login_response = UserMethods.login_user(
             USER_DATA["valid_user"]["email"],
             USER_DATA["valid_user"]["password"]
         )
@@ -26,7 +27,7 @@ class TestCreateOrder:
 
     @allure.title("Создание заказа без ингредиентов")
     def test_create_order_without_ingredients(self):
-        login_response = OrderMethods.login_user(
+        login_response = UserMethods.login_user(
             USER_DATA["valid_user"]["email"],
             USER_DATA["valid_user"]["password"]
         )
@@ -38,7 +39,7 @@ class TestCreateOrder:
 
     @allure.title("Создание заказа с неверным хэшем ингредиентов")
     def test_create_order_with_invalid_ingredient_hash(self):
-        login_response = OrderMethods.login_user(
+        login_response = UserMethods.login_user(
             USER_DATA["valid_user"]["email"],
             USER_DATA["valid_user"]["password"]
         )

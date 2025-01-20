@@ -39,6 +39,10 @@ USER_DATA = {
     "update_user": {
         "email": "updated_user@example.com",
         "name": "Updated Name"
+    },
+    "registered_user": {
+        "email": "Dmitrii_Losunov_15_963@yandex.ru",
+        "password": "123456"
     }
 }
 

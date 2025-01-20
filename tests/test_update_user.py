@@ -7,14 +7,9 @@ class TestUserDataUpdate:
 
     @allure.title("Обновление данных пользователя с авторизацией")
     def test_update_user_with_auth(self):
-        UserMethods.register_user(
-            USER_DATA["valid_user"]["email"],
-            USER_DATA["valid_user"]["password"],
-            USER_DATA["valid_user"]["name"]
-        )
         login_response = UserMethods.login_user(
-            USER_DATA["valid_user"]["email"],
-            USER_DATA["valid_user"]["password"]
+            USER_DATA["registered_user"]["email"],
+            USER_DATA["registered_user"]["password"]
         )
         token = login_response.json().get("accessToken")
         new_data = {

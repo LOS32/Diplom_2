@@ -9,14 +9,9 @@ class TestLoginUser:
 
         @allure.title("Тест на логин с валидными данными")
         def test_login_valid_user(self):
-            UserMethods.register_user(
-                USER_DATA["valid_user"]["email"],
-                USER_DATA["valid_user"]["password"],
-                USER_DATA["valid_user"]["name"]
-            )
             response = UserMethods.login_user(
-                USER_DATA["valid_user"]["email"],
-                USER_DATA["valid_user"]["password"]
+                USER_DATA["registered_user"]["email"],
+                USER_DATA["registered_user"]["password"]
             )
             response_json = response.json()
             assert "accessToken" in response_json, f"Response does not contain 'accessToken': {response_json}"

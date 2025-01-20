@@ -13,16 +13,6 @@ class OrderMethods:
         return response
 
     @staticmethod
-    @allure.step("Логин пользователя")
-    def login_user(email, password):
-        payload = {
-            "email": email,
-            "password": password
-        }
-        response = requests.post(f"{BASE_URL}{ENDPOINTS['login_user']}", json=payload)
-        return response
-
-    @staticmethod
     @allure.step("Получение заказов пользователя")
     def get_orders(token):
         headers = {"Authorization": token} if token else {}

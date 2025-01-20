@@ -4,17 +4,14 @@ from config import USER_DATA, USER_RESPONSES, SERVER_RESPONSES
 
 @allure.feature("Логин пользователя")
 class TestLoginUser:
-    @allure.feature("Логин пользователя")
-    class TestLoginUser:
-
-        @allure.title("Тест на логин с валидными данными")
-        def test_login_valid_user(self):
-            response = UserMethods.login_user(
-                USER_DATA["registered_user"]["email"],
-                USER_DATA["registered_user"]["password"]
-            )
-            response_json = response.json()
-            assert SERVER_RESPONSES["access_token_key"] in response_json, f"Response does not contain 'accessToken': {response_json}"
+    @allure.title("Тест на логин с валидными данными")
+    def test_login_valid_user(self):
+        response = UserMethods.login_user(
+            USER_DATA["registered_user"]["email"],
+            USER_DATA["registered_user"]["password"]
+        )
+        response_json = response.json()
+        assert SERVER_RESPONSES["access_token_key"] in response_json, f"Response does not contain '{SERVER_RESPONSES['access_token_key']}': {response_json}"
 
     @allure.title("Логин с неверным email")
     def test_login_invalid_email(self):

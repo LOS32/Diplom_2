@@ -1,7 +1,7 @@
 import allure
 from methods.order_methods import OrderMethods
 from methods.user_methods import UserMethods
-from config import USER_DATA, USER_RESPONSES
+from config import USER_DATA, USER_RESPONSES, SERVER_RESPONSES
 
 @allure.feature("Получение заказов пользователя")
 class TestGetOrders:
@@ -14,13 +14,9 @@ class TestGetOrders:
         )
         token = login_response.json().get("accessToken")
         orders_response = OrderMethods.get_orders(token)
-        assert orders_response.status_code == 200 and "orders" in orders_response.json(), (
-            f"Expected status 200 and 'orders' in response, but got {orders_response.status_code} and {orders_response.json()}"
-        )
+        assert orders_response.status_code == SERVER_RESPONSES["get_orders_status_code"] and SERVER_RESPONSES["get_orders_key"]
 
     @allure.title("Получение заказов неавторизованным пользователем")
     def test_get_orders_without_auth(self):
         orders_response = OrderMethods.get_orders(None)
-        assert orders_response.status_code == 401 and orders_response.json()["message"] == USER_RESPONSES["unauthorized"], (
-            f"Expected status 401 and message '{USER_RESPONSES['unauthorized']}', but got {orders_response.status_code} and {orders_response.json()}"
-        )
+        assert orders_response.status_code == SERVER_RESPONSES["unauthorized_status_code"] and orders_response.json()["message"] == SERVER_RESPONSES["unauthorized_message"]

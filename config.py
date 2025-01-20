@@ -46,11 +46,41 @@ USER_DATA = {
     }
 }
 
+CREATE_USER_RESPONSES = {
+    # Регистрация уникального пользователя
+    "success_key": "success",
+    "success_value": True,
+    "success_status_code": 200,
+    # Регистрация пользователя с уже существующим email
+    "user_exists_status_code": 403,
+    "user_exists_message": "User already exists",
+    # Регистрация пользователя без обязательного поля
+    "missing_fields_status_code": 403,
+    "missing_fields_message": "Email, password and name are required fields"
+}
+
 USER_RESPONSES = {
     "login_incorrect": "email or password are incorrect",
     "user_already_exists": "User already exists",
     "missing_data": "Email, password and name are required fields",
     "unauthorized": "You should be authorised"
+}
+
+SERVER_RESPONSES = {
+    # Создание заказа с авторизацией и ингредиентами
+    "order_created_key": "order",
+    # Создание заказа без ингредиентов
+    "ingredient_ids_missing": "Ingredient ids must be provided",
+    # Создание заказа с неверным хэшем ингредиентов
+    "server_error_code": 500,
+    # Получение заказов авторизованным пользователем
+    "get_orders_status_code": 200,
+    "get_orders_key": "orders",
+    # Получение заказов неавторизованным пользователем
+    "unauthorized_status_code": 401,
+    "unauthorized_message": "You should be authorised",
+    #
+    "access_token_key": "accessToken"
 }
 
 ORDER_DATA = {

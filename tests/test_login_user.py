@@ -1,6 +1,6 @@
 import allure
 from methods.user_methods import UserMethods
-from config import USER_DATA, USER_RESPONSES
+from config import USER_DATA, USER_RESPONSES, SERVER_RESPONSES
 
 @allure.feature("Логин пользователя")
 class TestLoginUser:
@@ -14,7 +14,7 @@ class TestLoginUser:
                 USER_DATA["registered_user"]["password"]
             )
             response_json = response.json()
-            assert "accessToken" in response_json, f"Response does not contain 'accessToken': {response_json}"
+            assert SERVER_RESPONSES["access_token_key"] in response_json, f"Response does not contain 'accessToken': {response_json}"
 
     @allure.title("Логин с неверным email")
     def test_login_invalid_email(self):
